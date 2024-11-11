@@ -26,6 +26,11 @@ jobs:
           sed -i 's|DB_HOST_PLACEHOLDER|${{ secrets.DB_HOST }}|g' src/main/resources/application.properties
           sed -i 's|DB_USERNAME_PLACEHOLDER|${{ secrets.DB_USERNAME }}|g' src/main/resources/application.properties
           sed -i 's|DB_PASSWORD_PLACEHOLDER|${{ secrets.DB_PASSWORD }}|g' src/main/resources/application.properties
+      
+      - name: Print application.properties
+        run: |
+          echo "Contents of application.properties:"
+          cat src/main/resources/application.properties
 
       - name: Build with Maven
         run: mvn clean install
