@@ -26,7 +26,7 @@ jobs:
         run: |
           powershell -Command "(Get-Content src/main/resources/application.properties) -replace 'DB_HOST_PLACEHOLDER', '${{ secrets.DB_HOST }}' | Set-Content src/main/resources/application.properties"
           powershell -Command "(Get-Content src/main/resources/application.properties) -replace 'DB_USERNAME_PLACEHOLDER', '${{ secrets.DB_USERNAME }}' | Set-Content src/main/resources/application.properties"
-          powershell -Command "(Get-Content src/main/resources/application.properties) -replace 'DB_PASSWORD_PLACEHOLDER', '${{ secrets.DB_PASSWORD }}' | Set-Content src/main/resources/application.properties"
+          powershell -Command "(Get-Content src/main/resources/application.properties) -replace 'DB_PASSWORD_PLACEHOLDER', '${{ secrets.CONTRASENIA }}' | Set-Content src/main/resources/application.properties"
       
       - name: Print application.properties
         run: |
