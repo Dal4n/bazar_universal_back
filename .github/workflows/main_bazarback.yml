@@ -21,11 +21,12 @@ jobs:
         with:
           java-version: '21'
           distribution: 'microsoft'
+          
       - name: Replace application.properties variables
         run: |
-          sed -i 's|DB_HOST_PLACEHOLDER|${{ secrets.DB_HOST }}|g' src/main/resources/application.properties
-          sed -i 's|DB_USERNAME_PLACEHOLDER|${{ secrets.DB_USERNAME }}|g' src/main/resources/application.properties
-          sed -i 's|DB_PASSWORD_PLACEHOLDER|${{ secrets.DB_PASSWORD }}|g' src/main/resources/application.properties
+          powershell -Command "(Get-Content src/main/resources/application.properties) -replace 'DB_HOST_PLACEHOLDER', '${{ secrets.DB_HOST }}' | Set-Content src/main/resources/application.properties"
+          powershell -Command "(Get-Content src/main/resources/application.properties) -replace 'DB_USERNAME_PLACEHOLDER', '${{ secrets.DB_USERNAME }}' | Set-Content src/main/resources/application.properties"
+          powershell -Command "(Get-Content src/main/resources/application.properties) -replace 'DB_PASSWORD_PLACEHOLDER', '${{ secrets.DB_PASSWORD }}' | Set-Content src/main/resources/application.properties"
       
       - name: Print application.properties
         run: |
